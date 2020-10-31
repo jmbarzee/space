@@ -45,7 +45,7 @@ func (o Orientation) Tilt(phi float64) Orientation {
 	return o
 }
 
-// Transform transforms the orientaion by the given matrix
+// Transform transforms the orientation by the given matrix
 func (o Orientation) Transform(m Matrix) Orientation {
 	v := o.Vector().Transform(m)
 	return v.Orientation()

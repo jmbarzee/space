@@ -1,6 +1,8 @@
 package space
 
-import "math"
+import (
+	"math"
+)
 
 // Vector is a 3D coordinate (also known as Point)
 type Vector struct {
@@ -8,9 +10,9 @@ type Vector struct {
 }
 
 // NewVector produces a new Vector from spherical coordinates
-func NewVector(direction Orientation, radius float64) Vector {
-	sinTheta, cosTheta := math.Sincos(direction.Theta)
-	sinPhi, cosPhi := math.Sincos(direction.Phi)
+func NewVector(orientation Orientation, radius float64) Vector {
+	sinTheta, cosTheta := math.Sincos(orientation.Theta)
+	sinPhi, cosPhi := math.Sincos(orientation.Phi)
 	return Vector{
 		X: radius * sinTheta * cosPhi,
 		Y: radius * sinTheta * sinPhi,
