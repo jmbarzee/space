@@ -656,5 +656,5 @@ func MatriciesEqual(a, b Matrix) bool {
 
 // FloatsEqual compares floats
 func FloatsEqual(a, b float64, err float64) bool {
-	return float64(math.Abs(float64(a-b))) < err
+	return float64(math.Abs(a-b)) < err
 }

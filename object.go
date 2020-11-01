@@ -4,19 +4,20 @@ package space
 type Object struct {
 	// location is the location of the
 	location Vector
-	// direction is primary orientation of the object
-	direction Orientation
+	// orientation is primary orientation of the object
+	orientation Orientation
 	// rotation is secondary orientation of the object
+	// rotation will always be orthogonal to direction
 	rotation Orientation
 }
 
 // NewObject creates an object
-func NewObject(location Vector, direction, rotation Orientation) *Object {
-	normalizedRotation := direction.PortionOrtagonal(rotation)
+func NewObject(location Vector, orientation, rotation Orientation) *Object {
+	normalizedRotation := orientation.PortionOrtagonal(rotation)
 	return &Object{
-		location:  location,
-		direction: direction,
-		rotation:  normalizedRotation,
+		location:    location,
+		orientation: orientation,
+		rotation:    normalizedRotation,
 	}
 }
 
@@ -32,21 +33,21 @@ func (o *Object) SetLocation(newLocation Vector) {
 
 // GetOrientation returns the physical orientation of the device
 func (o Object) GetOrientation() Orientation {
-	return o.direction
+	return o.orientation
 }
 
 // SetOrientation changes the physical orientation of the device
 func (o *Object) SetOrientation(newOrientation Orientation) {
-	o.direction = newOrientation
+	o.orientation = newOrientation
 	o.rotation = newOrientation.PortionOrtagonal(o.rotation)
 }
 
 // GetRotation returns the physical rotation of the device
 func (o Object) GetRotation() Orientation {
-	return o.direction
+	return o.rotation
 }
 
 // SetRotation changes the physical rotation of the device
 func (o *Object) SetRotation(newOrientation Orientation) {
-	o.rotation = o.direction.PortionOrtagonal(newOrientation)
+	o.rotation = o.orientation.PortionOrtagonal(newOrientation)
 }

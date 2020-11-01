@@ -14,14 +14,14 @@ type VectorTest struct {
 func RunVectorTests(t *testing.T, cases []VectorTest) {
 	for i, c := range cases {
 		actual := c.Operation(c.Initial)
-		if !VecotrsEqual(c.Expected, actual) {
+		if !VectorsEqual(c.Expected, actual) {
 			t.Fatalf("Test %v failed. Vectors were not equal:\n\tExpected: %v,\n\tActual: %v", i, c.Expected, actual)
 		}
 	}
 }
 
-// VecotrsEqual compares vectors
-func VecotrsEqual(a, b Vector) bool {
+// VectorsEqual compares vectors
+func VectorsEqual(a, b Vector) bool {
 	if !FloatsEqual(a.X, b.X, MinErr) {
 		return false
 	}
