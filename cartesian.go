@@ -4,7 +4,7 @@ import (
 	"math"
 )
 
-// Cartesian is a 3D coordinate (also known as Point)
+// Cartesian is a 3D coordinate in cartesian form
 type Cartesian struct {
 	X, Y, Z float64
 }
@@ -29,7 +29,7 @@ func (v Cartesian) Translate(q Cartesian) Cartesian {
 	}
 }
 
-// Scale Multiplyivlies a Cartesian by a given scale
+// Scale scales a Cartesian by i
 func (v Cartesian) Scale(i float64) Cartesian {
 	return Cartesian{
 		X: v.X * i,
