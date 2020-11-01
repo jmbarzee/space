@@ -6,559 +6,559 @@ import (
 )
 
 func TestNewRotationMatrixX(t *testing.T) {
-	cases := []VectorTest{
+	cases := []CartesianTest{
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 0.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{1, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, 0, 0},
+			Expected: Cartesian{1, 0, 0},
 		},
 		{
-			Initial: Vector{0, 1, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 1, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, 0, 1},
+			Expected: Cartesian{0, 0, 1},
 		},
 		{
-			Initial: Vector{0, 0, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 0, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, -1, 0},
+			Expected: Cartesian{0, -1, 0},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, -1, 1},
+			Expected: Cartesian{1, -1, 1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, 1, -1},
+			Expected: Cartesian{-1, 1, -1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, -2, 2},
+			Expected: Cartesian{2, -2, 2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, 2, -2},
+			Expected: Cartesian{-2, 2, -2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, 1, -1},
+			Expected: Cartesian{1, 1, -1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, -1, 1},
+			Expected: Cartesian{-1, -1, 1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, 2, -2},
+			Expected: Cartesian{2, 2, -2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, -2, 2},
+			Expected: Cartesian{-2, -2, 2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, -1, -1},
+			Expected: Cartesian{1, -1, -1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, 1, 1},
+			Expected: Cartesian{-1, 1, 1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, -2, -2},
+			Expected: Cartesian{2, -2, -2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, 2, 2},
+			Expected: Cartesian{-2, 2, 2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, 1, 1},
+			Expected: Cartesian{1, 1, 1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, -1, -1},
+			Expected: Cartesian{-1, -1, -1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, 2, 2},
+			Expected: Cartesian{2, 2, 2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, -2, -2},
+			Expected: Cartesian{-2, -2, -2},
 		},
 	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
 func TestNewRotationMatrixY(t *testing.T) {
-	cases := []VectorTest{
+	cases := []CartesianTest{
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 0.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{1, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, 0, -1},
+			Expected: Cartesian{0, 0, -1},
 		},
 		{
-			Initial: Vector{0, 1, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 1, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, 1, 0},
+			Expected: Cartesian{0, 1, 0},
 		},
 		{
-			Initial: Vector{0, 0, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 0, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, 0, 0},
+			Expected: Cartesian{1, 0, 0},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, 1, -1},
+			Expected: Cartesian{1, 1, -1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, -1, 1},
+			Expected: Cartesian{-1, -1, 1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, 2, -2},
+			Expected: Cartesian{2, 2, -2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, -2, 2},
+			Expected: Cartesian{-2, -2, 2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, 1, 1},
+			Expected: Cartesian{-1, 1, 1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, -1, -1},
+			Expected: Cartesian{1, -1, -1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, 2, 2},
+			Expected: Cartesian{-2, 2, 2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, -2, -2},
+			Expected: Cartesian{2, -2, -2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, 1, -1},
+			Expected: Cartesian{-1, 1, -1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, -1, 1},
+			Expected: Cartesian{1, -1, 1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, 2, -2},
+			Expected: Cartesian{-2, 2, -2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, -2, 2},
+			Expected: Cartesian{2, -2, 2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, 1, 1},
+			Expected: Cartesian{1, 1, 1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, -1, -1},
+			Expected: Cartesian{-1, -1, -1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, 2, 2},
+			Expected: Cartesian{2, 2, 2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, -2, -2},
+			Expected: Cartesian{-2, -2, -2},
 		},
 	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
 func TestNewRotationMatrixZ(t *testing.T) {
-	cases := []VectorTest{
+	cases := []CartesianTest{
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 0.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{1, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, 1, 0},
+			Expected: Cartesian{0, 1, 0},
 		},
 		{
-			Initial: Vector{0, 1, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 1, 0},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, 0, 0},
+			Expected: Cartesian{-1, 0, 0},
 		},
 		{
-			Initial: Vector{0, 0, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 0, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{0, 0, 1},
+			Expected: Cartesian{0, 0, 1},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, 1, 1},
+			Expected: Cartesian{-1, 1, 1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, -1, -1},
+			Expected: Cartesian{1, -1, -1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, 2, 2},
+			Expected: Cartesian{-2, 2, 2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, -2, -2},
+			Expected: Cartesian{2, -2, -2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, -1, 1},
+			Expected: Cartesian{1, -1, 1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, 1, -1},
+			Expected: Cartesian{-1, 1, -1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, -2, 2},
+			Expected: Cartesian{2, -2, 2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, 2, -2},
+			Expected: Cartesian{-2, 2, -2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, -1, 1},
+			Expected: Cartesian{-1, -1, 1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, 1, -1},
+			Expected: Cartesian{1, 1, -1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, -2, 2},
+			Expected: Cartesian{-2, -2, 2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, 2, -2},
+			Expected: Cartesian{2, 2, -2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{1, 1, 1},
+			Expected: Cartesian{1, 1, 1},
 		},
 		{
-			Initial: Vector{-1, -1, -1},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-1, -1, -1},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-1, -1, -1},
+			Expected: Cartesian{-1, -1, -1},
 		},
 		{
-			Initial: Vector{2, 2, 2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 2, 2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{2, 2, 2},
+			Expected: Cartesian{2, 2, 2},
 		},
 		{
-			Initial: Vector{-2, -2, -2},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{-2, -2, -2},
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, -2, -2},
+			Expected: Cartesian{-2, -2, -2},
 		},
 	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
 
 func TestMatrixMultiply(t *testing.T) {

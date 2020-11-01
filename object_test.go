@@ -6,7 +6,7 @@ import (
 
 func TestNewObject(t *testing.T) {
 	cases := []struct {
-		Location    Vector
+		Location    Cartesian
 		Orientation Orientation
 		Rotation    Orientation
 		Expected    Object
@@ -22,7 +22,7 @@ func TestNewObject(t *testing.T) {
 
 // ObjectsEqual compares objects
 func ObjectsEqual(a, b *Object) bool {
-	if !VectorsEqual(a.GetLocation(), b.GetLocation()) {
+	if !CartesiansEqual(a.GetLocation(), b.GetLocation()) {
 		return false
 	}
 	if !OrientationsEqual(a.GetOrientation(), b.GetOrientation()) {

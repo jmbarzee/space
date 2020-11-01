@@ -3,7 +3,7 @@ package space
 // An Object is something which exists in space
 type Object struct {
 	// location is the location of the
-	location Vector
+	location Cartesian
 	// orientation is primary orientation of the object
 	orientation Orientation
 	// rotation is secondary orientation of the object
@@ -12,7 +12,7 @@ type Object struct {
 }
 
 // NewObject creates an object
-func NewObject(location Vector, orientation, rotation Orientation) *Object {
+func NewObject(location Cartesian, orientation, rotation Orientation) *Object {
 	normalizedRotation := orientation.PortionOrtagonal(rotation)
 	return &Object{
 		location:    location,
@@ -22,12 +22,12 @@ func NewObject(location Vector, orientation, rotation Orientation) *Object {
 }
 
 // GetLocation returns the physical location of the device
-func (o Object) GetLocation() Vector {
+func (o Object) GetLocation() Cartesian {
 	return o.location
 }
 
 // SetLocation changes the physical location of the device
-func (o *Object) SetLocation(newLocation Vector) {
+func (o *Object) SetLocation(newLocation Cartesian) {
 	o.location = newLocation
 }
 

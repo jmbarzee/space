@@ -47,7 +47,7 @@ func (o Orientation) Tilt(phi float64) Orientation {
 
 // Transform transforms the orientation by the given matrix
 func (o Orientation) Transform(m Matrix) Orientation {
-	v := o.Vector().Transform(m)
+	v := o.Cartesian().Transform(m)
 	return v.Orientation()
 }
 
@@ -59,11 +59,11 @@ func (o Orientation) RotationMatrix() Matrix {
 	return orientationTheta.Multiply(orientationPhi)
 }
 
-// Vector returns a vector of length one in the orientation of o
-func (o Orientation) Vector() Vector {
+// Cartesian returns a Cartesian of length one in the orientation of o
+func (o Orientation) Cartesian() Cartesian {
 	cosT, sinT := math.Sincos(o.Theta)
 	cosP, sinP := math.Sincos(o.Phi)
-	return Vector{
+	return Cartesian{
 		X: cosT * sinP,
 		Y: sinT * sinP,
 		Z: cosP,
@@ -72,8 +72,8 @@ func (o Orientation) Vector() Vector {
 
 // PortionOrtagonal returns the portion of o2 which is orthogonal to o
 func (o Orientation) PortionOrtagonal(o2 Orientation) Orientation {
-	v := o.Vector()
-	u := o2.Vector()
+	v := o.Cartesian()
+	u := o2.Cartesian()
 	portUOrthoV := u.Translate(v.Project(u).Negative())
 	return portUOrthoV.Orientation()
 }

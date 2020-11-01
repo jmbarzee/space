@@ -5,23 +5,23 @@ import (
 	"testing"
 )
 
-type VectorTest struct {
-	Initial   Vector
-	Operation func(Vector) Vector
-	Expected  Vector
+type CartesianTest struct {
+	Initial   Cartesian
+	Operation func(Cartesian) Cartesian
+	Expected  Cartesian
 }
 
-func RunVectorTests(t *testing.T, cases []VectorTest) {
+func RunCartesianTests(t *testing.T, cases []CartesianTest) {
 	for i, c := range cases {
 		actual := c.Operation(c.Initial)
-		if !VectorsEqual(c.Expected, actual) {
-			t.Fatalf("Test %v failed. Vectors were not equal:\n\tExpected: %v,\n\tActual: %v", i, c.Expected, actual)
+		if !CartesiansEqual(c.Expected, actual) {
+			t.Fatalf("Test %v failed. Cartesians were not equal:\n\tExpected: %v,\n\tActual: %v", i, c.Expected, actual)
 		}
 	}
 }
 
-// VectorsEqual compares vectors
-func VectorsEqual(a, b Vector) bool {
+// CartesiansEqual compares Cartesians
+func CartesiansEqual(a, b Cartesian) bool {
 	if !FloatsEqual(a.X, b.X, MinErr) {
 		return false
 	}
@@ -34,221 +34,221 @@ func VectorsEqual(a, b Vector) bool {
 	return true
 }
 
-func TestNewVector(t *testing.T) {
+func TestNewCartesian(t *testing.T) {
 	sq2o2 := math.Sqrt2 / 2
-	cases := []VectorTest{
+	cases := []CartesianTest{
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				o := NewOrientation(0, 0)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{0, 0, 1},
+			Expected: Cartesian{0, 0, 1},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 0.0 / 4.0 * math.Pi
 				p := 1.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{0, 0, 1},
+			Expected: Cartesian{0, 0, 1},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 4.0 * math.Pi
 				p := 0.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{sq2o2, 0, sq2o2},
+			Expected: Cartesian{sq2o2, 0, sq2o2},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 4.0 * math.Pi
 				p := 0.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{1, 0, 0},
+			Expected: Cartesian{1, 0, 0},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 3.0 / 4.0 * math.Pi
 				p := 0.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{sq2o2, 0, -sq2o2},
+			Expected: Cartesian{sq2o2, 0, -sq2o2},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 4.0 / 4.0 * math.Pi
 				p := 0.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{0, 0, -1},
+			Expected: Cartesian{0, 0, -1},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 5.0 / 4.0 * math.Pi
 				p := 0.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{-sq2o2, 0, -sq2o2},
+			Expected: Cartesian{-sq2o2, 0, -sq2o2},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 6.0 / 4.0 * math.Pi
 				p := 0.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{-1, 0, 0},
+			Expected: Cartesian{-1, 0, 0},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 7.0 / 4.0 * math.Pi
 				p := 0.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{-sq2o2, 0, sq2o2},
+			Expected: Cartesian{-sq2o2, 0, sq2o2},
 		},
 		{
-			Operation: func(v Vector) Vector {
+			Operation: func(v Cartesian) Cartesian {
 				t := 8.0 / 4.0 * math.Pi
 				p := 0.0 / 4.0 * math.Pi
 				o := NewOrientation(t, p)
-				return NewVector(o, 1)
+				return NewCartesian(o, 1)
 			},
-			Expected: Vector{0, 0, 1},
+			Expected: Cartesian{0, 0, 1},
 		},
 	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
-func TestVectorTranslate(t *testing.T) {
-	cases := []VectorTest{
+func TestCartesianTranslate(t *testing.T) {
+	cases := []CartesianTest{
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{2, 3, 5}
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{2, 3, 5}
 				return v.Translate(u)
 			},
-			Expected: Vector{2, 3, 5},
+			Expected: Cartesian{2, 3, 5},
 		},
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{-2, -3, -5}
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{-2, -3, -5}
 				return v.Translate(u)
 			},
-			Expected: Vector{-2, -3, -5},
+			Expected: Cartesian{-2, -3, -5},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 0, 0}
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 0}
 				return v.Translate(u)
 			},
-			Expected: Vector{2, 3, 5},
+			Expected: Cartesian{2, 3, 5},
 		},
 		{
-			Initial: Vector{-2, -3, -5},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 0, 0}
+			Initial: Cartesian{-2, -3, -5},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 0}
 				return v.Translate(u)
 			},
-			Expected: Vector{-2, -3, -5},
+			Expected: Cartesian{-2, -3, -5},
 		},
 	}
-	RunVectorTests(t, cases)
-}
-
-func TestVectorScale(t *testing.T) {
-	cases := []VectorTest{
-		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
-				i := 0.0
-				return v.Scale(i)
-			},
-			Expected: Vector{0, 0, 0},
-		},
-		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
-				i := 0.0
-				return v.Scale(i)
-			},
-			Expected: Vector{0, 0, 0},
-		},
-		{
-			Initial: Vector{-2, -3, -5},
-			Operation: func(v Vector) Vector {
-				i := 0.0
-				return v.Scale(i)
-			},
-			Expected: Vector{0, 0, 0},
-		},
-		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
-				i := 1.1
-				return v.Scale(i)
-			},
-			Expected: Vector{0, 0, 0},
-		},
-		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
-				i := 1.1
-				return v.Scale(i)
-			},
-			Expected: Vector{2.2, 3.3, 5.5},
-		},
-		{
-			Initial: Vector{-2, -3, -5},
-			Operation: func(v Vector) Vector {
-				i := 1.1
-				return v.Scale(i)
-			},
-			Expected: Vector{-2.2, -3.3, -5.5},
-		},
-		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
-				i := -1.1
-				return v.Scale(i)
-			},
-			Expected: Vector{0, 0, 0},
-		},
-		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
-				i := -1.1
-				return v.Scale(i)
-			},
-			Expected: Vector{-2.2, -3.3, -5.5},
-		},
-		{
-			Initial: Vector{-2, -3, -5},
-			Operation: func(v Vector) Vector {
-				i := -1.1
-				return v.Scale(i)
-			},
-			Expected: Vector{2.2, 3.3, 5.5},
-		},
-	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
 
-func TestVectorTransform(t *testing.T) {
-	cases := []VectorTest{
+func TestCartesianScale(t *testing.T) {
+	cases := []CartesianTest{
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				i := 0.0
+				return v.Scale(i)
+			},
+			Expected: Cartesian{0, 0, 0},
+		},
+		{
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
+				i := 0.0
+				return v.Scale(i)
+			},
+			Expected: Cartesian{0, 0, 0},
+		},
+		{
+			Initial: Cartesian{-2, -3, -5},
+			Operation: func(v Cartesian) Cartesian {
+				i := 0.0
+				return v.Scale(i)
+			},
+			Expected: Cartesian{0, 0, 0},
+		},
+		{
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				i := 1.1
+				return v.Scale(i)
+			},
+			Expected: Cartesian{0, 0, 0},
+		},
+		{
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
+				i := 1.1
+				return v.Scale(i)
+			},
+			Expected: Cartesian{2.2, 3.3, 5.5},
+		},
+		{
+			Initial: Cartesian{-2, -3, -5},
+			Operation: func(v Cartesian) Cartesian {
+				i := 1.1
+				return v.Scale(i)
+			},
+			Expected: Cartesian{-2.2, -3.3, -5.5},
+		},
+		{
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				i := -1.1
+				return v.Scale(i)
+			},
+			Expected: Cartesian{0, 0, 0},
+		},
+		{
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
+				i := -1.1
+				return v.Scale(i)
+			},
+			Expected: Cartesian{-2.2, -3.3, -5.5},
+		},
+		{
+			Initial: Cartesian{-2, -3, -5},
+			Operation: func(v Cartesian) Cartesian {
+				i := -1.1
+				return v.Scale(i)
+			},
+			Expected: Cartesian{2.2, 3.3, 5.5},
+		},
+	}
+	RunCartesianTests(t, cases)
+}
+
+func TestCartesianTransform(t *testing.T) {
+	cases := []CartesianTest{
+		{
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				u := Matrix{
 					{1, 0, 0, 0},
 					{0, 1, 0, 0},
@@ -257,11 +257,11 @@ func TestVectorTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
 				u := Matrix{
 					{1, 0, 0, 0},
 					{0, 1, 0, 0},
@@ -270,11 +270,11 @@ func TestVectorTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Vector{2, 3, 5},
+			Expected: Cartesian{2, 3, 5},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
 				u := Matrix{
 					{1, 0, 0, 0},
 					{0, 0, 0, 0},
@@ -283,11 +283,11 @@ func TestVectorTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Vector{2, 0, 0},
+			Expected: Cartesian{2, 0, 0},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
 				u := Matrix{
 					{0, 0, 0, 0},
 					{0, 1, 0, 0},
@@ -296,11 +296,11 @@ func TestVectorTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Vector{0, 3, 0},
+			Expected: Cartesian{0, 3, 0},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
 				u := Matrix{
 					{0, 0, 0, 0},
 					{0, 0, 0, 0},
@@ -309,11 +309,11 @@ func TestVectorTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Vector{0, 0, 5},
+			Expected: Cartesian{0, 0, 5},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
 				u := Matrix{
 					{2, 0, 0, 0},
 					{0, 2, 0, 0},
@@ -322,11 +322,11 @@ func TestVectorTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Vector{4, 6, 10},
+			Expected: Cartesian{4, 6, 10},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
 				u := Matrix{
 					{1, 0, 0, 9},
 					{0, 1, 0, 9},
@@ -335,195 +335,195 @@ func TestVectorTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Vector{11, 12, 14},
+			Expected: Cartesian{11, 12, 14},
 		},
 	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
 
-func TestVectorProject(t *testing.T) {
-	cases := []VectorTest{
+func TestCartesianProject(t *testing.T) {
+	cases := []CartesianTest{
 		{
-			Initial: Vector{1, 0, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{2, 0, 0}
+			Initial: Cartesian{1, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{2, 0, 0}
 				return v.Project(u)
 			},
-			Expected: Vector{2, 0, 0},
+			Expected: Cartesian{2, 0, 0},
 		},
 		{
-			Initial: Vector{0, 1, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{2, 0, 0}
+			Initial: Cartesian{0, 1, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{2, 0, 0}
 				return v.Project(u)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{0, 0, 1},
-			Operation: func(v Vector) Vector {
-				u := Vector{2, 0, 0}
+			Initial: Cartesian{0, 0, 1},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{2, 0, 0}
 				return v.Project(u)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{1, 0, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 2, 0}
+			Initial: Cartesian{1, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 2, 0}
 				return v.Project(u)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{0, 1, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 2, 0}
+			Initial: Cartesian{0, 1, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 2, 0}
 				return v.Project(u)
 			},
-			Expected: Vector{0, 2, 0},
+			Expected: Cartesian{0, 2, 0},
 		},
 		{
-			Initial: Vector{0, 0, 1},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 2, 0}
+			Initial: Cartesian{0, 0, 1},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 2, 0}
 				return v.Project(u)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{1, 0, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 0, 2}
+			Initial: Cartesian{1, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 2}
 				return v.Project(u)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{0, 1, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 0, 2}
+			Initial: Cartesian{0, 1, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 2}
 				return v.Project(u)
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{0, 0, 1},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 0, 2}
+			Initial: Cartesian{0, 0, 1},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 2}
 				return v.Project(u)
 			},
-			Expected: Vector{0, 0, 2},
+			Expected: Cartesian{0, 0, 2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
-				u := Vector{6, 0, 0}
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{6, 0, 0}
 				return v.Project(u)
 			},
-			Expected: Vector{2, 2, 2},
+			Expected: Cartesian{2, 2, 2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 6, 0}
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 6, 0}
 				return v.Project(u)
 			},
-			Expected: Vector{2, 2, 2},
+			Expected: Cartesian{2, 2, 2},
 		},
 		{
-			Initial: Vector{1, 1, 1},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 0, 6}
+			Initial: Cartesian{1, 1, 1},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 6}
 				return v.Project(u)
 			},
-			Expected: Vector{2, 2, 2},
+			Expected: Cartesian{2, 2, 2},
 		},
 	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
 
-func TestVectorNegative(t *testing.T) {
-	cases := []VectorTest{
+func TestCartesianNegative(t *testing.T) {
+	cases := []CartesianTest{
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				return v.Negative()
 			},
-			Expected: Vector{0, 0, 0},
+			Expected: Cartesian{0, 0, 0},
 		},
 		{
-			Initial: Vector{1, 0, 0},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
 				return v.Negative()
 			},
-			Expected: Vector{-1, 0, 0},
+			Expected: Cartesian{-1, 0, 0},
 		},
 		{
-			Initial: Vector{0, 2, 3},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{0, 2, 3},
+			Operation: func(v Cartesian) Cartesian {
 				return v.Negative()
 			},
-			Expected: Vector{0, -2, -3},
+			Expected: Cartesian{0, -2, -3},
 		},
 		{
-			Initial: Vector{1, 2, 3},
-			Operation: func(v Vector) Vector {
+			Initial: Cartesian{1, 2, 3},
+			Operation: func(v Cartesian) Cartesian {
 				return v.Negative()
 			},
-			Expected: Vector{-1, -2, -3},
+			Expected: Cartesian{-1, -2, -3},
 		},
 	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
 
-func TestVectorTranslationMatrix(t *testing.T) {
-	cases := []VectorTest{
+func TestCartesianTranslationMatrix(t *testing.T) {
+	cases := []CartesianTest{
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{2, 3, 5}
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{2, 3, 5}
 				m := u.TranslationMatrix()
 				return v.Transform(m)
 			},
-			Expected: Vector{2, 3, 5},
+			Expected: Cartesian{2, 3, 5},
 		},
 		{
-			Initial: Vector{0, 0, 0},
-			Operation: func(v Vector) Vector {
-				u := Vector{-2, -3, -5}
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{-2, -3, -5}
 				m := u.TranslationMatrix()
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, -3, -5},
+			Expected: Cartesian{-2, -3, -5},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 0, 0}
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 0}
 				m := u.TranslationMatrix()
 				return v.Transform(m)
 			},
-			Expected: Vector{2, 3, 5},
+			Expected: Cartesian{2, 3, 5},
 		},
 		{
-			Initial: Vector{-2, -3, -5},
-			Operation: func(v Vector) Vector {
-				u := Vector{0, 0, 0}
+			Initial: Cartesian{-2, -3, -5},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 0}
 				m := u.TranslationMatrix()
 				return v.Transform(m)
 			},
-			Expected: Vector{-2, -3, -5},
+			Expected: Cartesian{-2, -3, -5},
 		},
 		{
-			Initial: Vector{2, 3, 5},
-			Operation: func(v Vector) Vector {
-				u := Vector{7, 8, 9}
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{7, 8, 9}
 				m := u.TranslationMatrix()
 				return v.Transform(m)
 			},
-			Expected: Vector{9, 11, 14},
+			Expected: Cartesian{9, 11, 14},
 		},
 	}
-	RunVectorTests(t, cases)
+	RunCartesianTests(t, cases)
 }
