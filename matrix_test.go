@@ -5,6 +5,18 @@ import (
 	"testing"
 )
 
+// MatriciesEqual compares matricies
+func MatriciesEqual(a, b Matrix) bool {
+	for row := 0; row < 4; row++ {
+		for col := 0; col < 4; col++ {
+			if !FloatsEqual(a[row][col], b[row][col], MinErr) {
+				return false
+			}
+		}
+	}
+	return true
+}
+
 func TestNewRotationMatrixX(t *testing.T) {
 	cases := []CartesianTest{
 		{
@@ -12,7 +24,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 0.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, 0, 0},
 		},
@@ -21,7 +33,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, 0, 0},
 		},
@@ -30,7 +42,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, 0, 1},
 		},
@@ -39,7 +51,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, -1, 0},
 		},
@@ -48,7 +60,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, -1, 1},
 		},
@@ -57,7 +69,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, 1, -1},
 		},
@@ -66,7 +78,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, -2, 2},
 		},
@@ -75,7 +87,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, 2, -2},
 		},
@@ -84,7 +96,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, 1, -1},
 		},
@@ -93,7 +105,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, -1, 1},
 		},
@@ -102,7 +114,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, 2, -2},
 		},
@@ -111,7 +123,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, -2, 2},
 		},
@@ -120,7 +132,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, -1, -1},
 		},
@@ -129,7 +141,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, 1, 1},
 		},
@@ -138,7 +150,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, -2, -2},
 		},
@@ -147,7 +159,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, 2, 2},
 		},
@@ -156,7 +168,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, 1, 1},
 		},
@@ -165,7 +177,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, -1, -1},
 		},
@@ -174,7 +186,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, 2, 2},
 		},
@@ -183,7 +195,7 @@ func TestNewRotationMatrixX(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixX(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, -2, -2},
 		},
@@ -197,7 +209,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 0.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, 0, 0},
 		},
@@ -206,7 +218,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, 0, -1},
 		},
@@ -215,7 +227,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, 1, 0},
 		},
@@ -224,7 +236,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, 0, 0},
 		},
@@ -233,7 +245,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, 1, -1},
 		},
@@ -242,7 +254,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, -1, 1},
 		},
@@ -251,7 +263,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, 2, -2},
 		},
@@ -260,7 +272,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, -2, 2},
 		},
@@ -269,7 +281,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, 1, 1},
 		},
@@ -278,7 +290,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, -1, -1},
 		},
@@ -287,7 +299,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, 2, 2},
 		},
@@ -296,7 +308,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, -2, -2},
 		},
@@ -305,7 +317,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, 1, -1},
 		},
@@ -314,7 +326,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, -1, 1},
 		},
@@ -323,7 +335,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, 2, -2},
 		},
@@ -332,7 +344,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, -2, 2},
 		},
@@ -341,7 +353,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, 1, 1},
 		},
@@ -350,7 +362,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, -1, -1},
 		},
@@ -359,7 +371,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, 2, 2},
 		},
@@ -368,7 +380,7 @@ func TestNewRotationMatrixY(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixY(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, -2, -2},
 		},
@@ -382,7 +394,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 0.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, 0, 0},
 		},
@@ -391,7 +403,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, 1, 0},
 		},
@@ -400,7 +412,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, 0, 0},
 		},
@@ -409,7 +421,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{0, 0, 1},
 		},
@@ -418,7 +430,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, 1, 1},
 		},
@@ -427,7 +439,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, -1, -1},
 		},
@@ -436,7 +448,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, 2, 2},
 		},
@@ -445,7 +457,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, -2, -2},
 		},
@@ -454,7 +466,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, -1, 1},
 		},
@@ -463,7 +475,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, 1, -1},
 		},
@@ -472,7 +484,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, -2, 2},
 		},
@@ -481,7 +493,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := -1.0 / 2.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, 2, -2},
 		},
@@ -490,7 +502,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, -1, 1},
 		},
@@ -499,7 +511,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, 1, -1},
 		},
@@ -508,7 +520,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, -2, 2},
 		},
@@ -517,7 +529,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 1.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, 2, -2},
 		},
@@ -526,7 +538,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{1, 1, 1},
 		},
@@ -535,7 +547,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-1, -1, -1},
 		},
@@ -544,7 +556,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{2, 2, 2},
 		},
@@ -553,7 +565,7 @@ func TestNewRotationMatrixZ(t *testing.T) {
 			Operation: func(v Cartesian) Cartesian {
 				t := 2.0 / 1.0 * math.Pi
 				m := NewRotationMatrixZ(t)
-				return v.Transform(m)
+				return v.Transform(m).Cartesian()
 			},
 			Expected: Cartesian{-2, -2, -2},
 		},
@@ -636,25 +648,4 @@ func TestMatrixMultiply(t *testing.T) {
 			t.Fatalf("Multiply %v failed. Matricies were not equal:\n\tExpected: %v,\n\tActual: %v", i, c.Expected, actual)
 		}
 	}
-}
-
-const (
-	MinErr = 0.000001
-)
-
-// MatriciesEqual compares matricies
-func MatriciesEqual(a, b Matrix) bool {
-	for row := 0; row < 4; row++ {
-		for col := 0; col < 4; col++ {
-			if !FloatsEqual(a[row][col], b[row][col], MinErr) {
-				return false
-			}
-		}
-	}
-	return true
-}
-
-// FloatsEqual compares floats
-func FloatsEqual(a, b float64, err float64) bool {
-	return float64(math.Abs(a-b)) < err
 }

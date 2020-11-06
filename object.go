@@ -4,20 +4,20 @@ package space
 type Object struct {
 	// location is the location of the
 	location Cartesian
-	// orientation is primary orientation of the object
-	orientation Orientation
-	// rotation is secondary orientation of the object
+	// Spherical is primary Spherical of the object
+	Spherical Spherical
+	// rotation is secondary Spherical of the object
 	// rotation will always be orthogonal to direction
-	rotation Orientation
+	rotation Spherical
 }
 
 // NewObject creates an object
-func NewObject(location Cartesian, orientation, rotation Orientation) *Object {
-	normalizedRotation := orientation.PortionOrtagonal(rotation)
+func NewObject(location Cartesian, Spherical, rotation Spherical) *Object {
+	normalizedRotation := Spherical.PortionOrtagonal(rotation)
 	return &Object{
-		location:    location,
-		orientation: orientation,
-		rotation:    normalizedRotation,
+		location:  location,
+		Spherical: Spherical,
+		rotation:  normalizedRotation,
 	}
 }
 
@@ -31,23 +31,23 @@ func (o *Object) SetLocation(newLocation Cartesian) {
 	o.location = newLocation
 }
 
-// GetOrientation returns the physical orientation of the device
-func (o Object) GetOrientation() Orientation {
-	return o.orientation
+// GetSpherical returns the physical Spherical of the device
+func (o Object) GetSpherical() Spherical {
+	return o.Spherical
 }
 
-// SetOrientation changes the physical orientation of the device
-func (o *Object) SetOrientation(newOrientation Orientation) {
-	o.orientation = newOrientation
-	o.rotation = newOrientation.PortionOrtagonal(o.rotation)
+// SetSpherical changes the physical Spherical of the device
+func (o *Object) SetSpherical(newSpherical Spherical) {
+	o.Spherical = newSpherical
+	o.rotation = newSpherical.PortionOrtagonal(o.rotation)
 }
 
 // GetRotation returns the physical rotation of the device
-func (o Object) GetRotation() Orientation {
+func (o Object) GetRotation() Spherical {
 	return o.rotation
 }
 
 // SetRotation changes the physical rotation of the device
-func (o *Object) SetRotation(newOrientation Orientation) {
-	o.rotation = o.orientation.PortionOrtagonal(newOrientation)
+func (o *Object) SetRotation(newSpherical Spherical) {
+	o.rotation = o.Spherical.PortionOrtagonal(newSpherical)
 }

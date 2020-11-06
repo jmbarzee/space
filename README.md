@@ -5,4 +5,4 @@
 [![Coverage](https://codecov.io/gh/jmbarzee/space/branch/master/graph/badge.svg)](https://codecov.io/gh/jmbarzee/space)
 
 # Space
-Space is a lightweight implementation of 3d math. It supports, Cartesians, matricies, orientations, and more!
+Space is a lightweight implementation of 3d math. It supports, Vectors as Cartesians or Sphericals, Matricies, and more!
