@@ -71,3 +71,54 @@ func TestCartesianSpherical(t *testing.T) {
 	}
 	RunSphericalTests(t, cases)
 }
+
+func TestCartesianTranslationMatrix(t *testing.T) {
+	cases := []CartesianTest{
+		{
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{2, 3, 5}
+				m := u.TranslationMatrix()
+				return v.Transform(m).Cartesian()
+			},
+			Expected: Cartesian{2, 3, 5},
+		},
+		{
+			Initial: Cartesian{0, 0, 0},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{-2, -3, -5}
+				m := u.TranslationMatrix()
+				return v.Transform(m).Cartesian()
+			},
+			Expected: Cartesian{-2, -3, -5},
+		},
+		{
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 0}
+				m := u.TranslationMatrix()
+				return v.Transform(m).Cartesian()
+			},
+			Expected: Cartesian{2, 3, 5},
+		},
+		{
+			Initial: Cartesian{-2, -3, -5},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{0, 0, 0}
+				m := u.TranslationMatrix()
+				return v.Transform(m).Cartesian()
+			},
+			Expected: Cartesian{-2, -3, -5},
+		},
+		{
+			Initial: Cartesian{2, 3, 5},
+			Operation: func(v Cartesian) Cartesian {
+				u := Cartesian{7, 8, 9}
+				m := u.TranslationMatrix()
+				return v.Transform(m).Cartesian()
+			},
+			Expected: Cartesian{9, 11, 14},
+		},
+	}
+	RunCartesianTests(t, cases)
+}

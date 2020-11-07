@@ -99,14 +99,6 @@ func (s Spherical) Tilt(phi float64) Spherical {
 	return s
 }
 
-// RotationMatrix produces a matrix which will transform by o
-func (s Spherical) RotationMatrix() Matrix {
-	SphericalP := NewRotationMatrixY(s.P)
-	SphericalT := NewRotationMatrixZ(s.T)
-
-	return SphericalT.Multiply(SphericalP)
-}
-
 // PortionOrtagonal returns the portion of o2 which is orthogonal to o
 func (s Spherical) PortionOrtagonal(o2 Spherical) Spherical {
 	v := s.Cartesian()
