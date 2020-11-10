@@ -4,20 +4,20 @@ package space
 type Object struct {
 	// location is the location of the
 	location Cartesian
-	// Spherical is primary Spherical of the object
-	Spherical Spherical
+	// orientation is primary Spherical of the object
+	orientation Spherical
 	// rotation is secondary Spherical of the object
 	// rotation will always be orthogonal to direction
 	rotation Spherical
 }
 
 // NewObject creates an object
-func NewObject(location Cartesian, Spherical, rotation Spherical) *Object {
-	normalizedRotation := Spherical.PortionOrtagonal(rotation)
+func NewObject(location Cartesian, orientation, rotation Spherical) *Object {
+	normalizedRotation := orientation.PortionOrtagonal(rotation)
 	return &Object{
-		location:  location,
-		Spherical: Spherical,
-		rotation:  normalizedRotation,
+		location:    location,
+		orientation: orientation,
+		rotation:    normalizedRotation,
 	}
 }
 
@@ -33,12 +33,12 @@ func (o *Object) SetLocation(newLocation Cartesian) {
 
 // GetSpherical returns the physical Spherical of the device
 func (o Object) GetSpherical() Spherical {
-	return o.Spherical
+	return o.orientation
 }
 
 // SetSpherical changes the physical Spherical of the device
 func (o *Object) SetSpherical(newSpherical Spherical) {
-	o.Spherical = newSpherical
+	o.orientation = newSpherical
 	o.rotation = newSpherical.PortionOrtagonal(o.rotation)
 }
 
@@ -49,5 +49,5 @@ func (o Object) GetRotation() Spherical {
 
 // SetRotation changes the physical rotation of the device
 func (o *Object) SetRotation(newSpherical Spherical) {
-	o.rotation = o.Spherical.PortionOrtagonal(newSpherical)
+	o.rotation = o.orientation.PortionOrtagonal(newSpherical)
 }
