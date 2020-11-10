@@ -25,7 +25,7 @@ func ObjectsEqual(a, b *Object) bool {
 	if !CartesiansEqual(a.GetLocation(), b.GetLocation()) {
 		return false
 	}
-	if !SphericalsEqual(a.GetSpherical(), b.GetSpherical()) {
+	if !SphericalsEqual(a.GetOrientation(), b.GetOrientation()) {
 		return false
 	}
 	if !SphericalsEqual(a.GetRotation(), b.GetRotation()) {
