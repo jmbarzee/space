@@ -31,15 +31,15 @@ func (o *Object) SetLocation(newLocation Cartesian) {
 	o.location = newLocation
 }
 
-// GetSpherical returns the physical Spherical of the device
-func (o Object) GetSpherical() Spherical {
+// GetOrientation returns the physical Spherical of the device
+func (o Object) GetOrientation() Spherical {
 	return o.orientation
 }
 
-// SetSpherical changes the physical Spherical of the device
-func (o *Object) SetSpherical(newSpherical Spherical) {
-	o.orientation = newSpherical
-	o.rotation = newSpherical.PortionOrtagonal(o.rotation)
+// SetOrientation changes the physical Spherical of the device
+func (o *Object) SetOrientation(newOrientation Spherical) {
+	o.orientation = newOrientation
+	o.rotation = newOrientation.PortionOrtagonal(o.rotation)
 }
 
 // GetRotation returns the physical rotation of the device
@@ -48,6 +48,6 @@ func (o Object) GetRotation() Spherical {
 }
 
 // SetRotation changes the physical rotation of the device
-func (o *Object) SetRotation(newSpherical Spherical) {
-	o.rotation = o.orientation.PortionOrtagonal(newSpherical)
+func (o *Object) SetRotation(newRotation Spherical) {
+	o.rotation = o.orientation.PortionOrtagonal(newRotation)
 }
