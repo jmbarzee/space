@@ -16,12 +16,7 @@ func rad(n, d int) float64 {
 }
 
 func near(a, b float64) bool {
-	return FloatsEqual(a, b, MinErr)
-}
-
-// FloatsEqual compares floats
-func FloatsEqual(a, b float64, err float64) bool {
-	return float64(math.Abs(a-b)) < err
+	return float64(math.Abs(a-b)) < MinErr
 }
 
 var sqrt2o2 = math.Sqrt2 / 2.0
