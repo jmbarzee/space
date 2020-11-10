@@ -1,6 +1,7 @@
 package space
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -30,10 +31,18 @@ func (c Cartesian) Spherical() Spherical {
 	x2 := c.X * c.X
 	y2 := c.Y * c.Y
 	z2 := c.Z * c.Z
+	r := math.Sqrt(x2 + y2 + z2)
+	if near(c.Y, 0) && near(c.X, 0) {
+		return NewSpherical(
+			r,
+			math.Atan(c.Y/c.X),
+			math.Acos(c.Z/r),
+		)
+	}
 	return NewSpherical(
-		math.Sqrt(x2+y2+z2),
+		r,
 		math.Atan2(c.Y, c.X),
-		math.Atan2(math.Sqrt(x2+y2), c.Z),
+		math.Acos(c.Z/r),
 	)
 }
 
@@ -82,4 +91,8 @@ func (c Cartesian) TranslationMatrix() Matrix {
 		{0, 0, 1, c.Z},
 		{0, 0, 0, 1},
 	}
+}
+
+func (c Cartesian) String() string {
+	return fmt.Sprintf("{X:%4.2f, Y:%4.2f, Z:%4.2f}", c.X, c.Y, c.Z)
 }

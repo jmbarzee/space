@@ -1,6 +1,7 @@
 package space
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -103,6 +104,28 @@ func (s Spherical) Tilt(phi float64) Spherical {
 func (s Spherical) PortionOrtagonal(o2 Spherical) Spherical {
 	v := s.Cartesian()
 	u := o2.Cartesian()
-	portUOrthoV := u.Translate(v.Project(u).Scale(-1.0))
-	return portUOrthoV.Spherical()
+	fmt.Println("v", v)
+	fmt.Println("u", u)
+	vProju := v.Project(u)
+	fmt.Println("vProju", vProju)
+	vProjuN := vProju.Scale(-1.0)
+	fmt.Println("vProjuN", vProjuN)
+	portUOrthoV := u.Translate(vProjuN)
+	fmt.Println("portUOrthoV", portUOrthoV)
+	sp := portUOrthoV.Spherical()
+	fmt.Println("sp", sp)
+	return sp
+}
+
+// RotationMatrix produces a matrix which will rotate based on the spherical coordinates
+func (s Spherical) RotationMatrix() Matrix {
+	rotateZbyT := NewRotationMatrixZ(s.T)
+	rotateYbyP := NewRotationMatrixY(s.P)
+	rotateZbyTinverse := NewRotationMatrixZ(-s.T)
+
+	return rotateZbyT.Multiply(rotateYbyP).Multiply(rotateZbyTinverse)
+}
+
+func (s Spherical) String() string {
+	return fmt.Sprintf("{R:%4.2f, T:%4.2f, P:%4.2f}", s.R, s.T, s.P)
 }

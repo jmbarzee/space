@@ -21,13 +21,13 @@ func RunCartesianTests(t *testing.T, cases []CartesianTest) {
 
 // CartesiansEqual compares Cartesians
 func CartesiansEqual(a, b Cartesian) bool {
-	if !FloatsEqual(a.X, b.X, MinErr) {
+	if !near(a.X, b.X) {
 		return false
 	}
-	if !FloatsEqual(a.Y, b.Y, MinErr) {
+	if !near(a.Y, b.Y) {
 		return false
 	}
-	if !FloatsEqual(a.Z, b.Z, MinErr) {
+	if !near(a.Z, b.Z) {
 		return false
 	}
 	return true

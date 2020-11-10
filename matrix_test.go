@@ -9,7 +9,7 @@ import (
 func MatriciesEqual(a, b Matrix) bool {
 	for row := 0; row < 4; row++ {
 		for col := 0; col < 4; col++ {
-			if !FloatsEqual(a[row][col], b[row][col], MinErr) {
+			if !near(a[row][col], b[row][col]) {
 				return false
 			}
 		}

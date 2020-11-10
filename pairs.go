@@ -4,6 +4,8 @@ import (
 	"math"
 )
 
+const MinErr = 0.000001
+
 type vectorEquivalent struct {
 	Cartesian Cartesian
 	Spherical Spherical
@@ -13,10 +15,19 @@ func rad(n, d int) float64 {
 	return float64(n) / float64(d) * math.Pi
 }
 
+func near(a, b float64) bool {
+	return FloatsEqual(a, b, MinErr)
+}
+
+// FloatsEqual compares floats
+func FloatsEqual(a, b float64, err float64) bool {
+	return float64(math.Abs(a-b)) < err
+}
+
 var sqrt2o2 = math.Sqrt2 / 2.0
 
 var AllEquivalencies = []vectorEquivalent{
-	Orgin,
+	Origin,
 
 	AxisX,
 	AxisXN,
@@ -53,7 +64,7 @@ var AllEquivalencies = []vectorEquivalent{
 
 // Origin
 var (
-	Orgin = vectorEquivalent{
+	Origin = vectorEquivalent{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: 0,

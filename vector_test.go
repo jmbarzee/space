@@ -1,16 +1,8 @@
 package space
 
 import (
-	"math"
 	"testing"
 )
-
-const MinErr = 0.000001
-
-// FloatsEqual compares floats
-func FloatsEqual(a, b float64, err float64) bool {
-	return float64(math.Abs(a-b)) < err
-}
 
 type VectorTest struct {
 	Initial   Vector
@@ -78,7 +70,7 @@ func TestScale(t *testing.T) {
 				i := 0.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{0, 0, 0},
@@ -86,7 +78,7 @@ func TestScale(t *testing.T) {
 				i := 0.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{1, 0, 0},
@@ -94,7 +86,7 @@ func TestScale(t *testing.T) {
 				i := 0.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{0, 1, 0},
@@ -102,7 +94,7 @@ func TestScale(t *testing.T) {
 				i := 0.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{0, 0, 1},
@@ -110,7 +102,7 @@ func TestScale(t *testing.T) {
 				i := 0.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{-1, 0, 0},
@@ -118,7 +110,7 @@ func TestScale(t *testing.T) {
 				i := 0.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{0, -1, 0},
@@ -126,7 +118,7 @@ func TestScale(t *testing.T) {
 				i := 0.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{0, 0, -1},
@@ -134,7 +126,7 @@ func TestScale(t *testing.T) {
 				i := 0.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{0, 0, 0},
@@ -142,7 +134,7 @@ func TestScale(t *testing.T) {
 				i := 1.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{1, 0, 0},
@@ -198,7 +190,7 @@ func TestScale(t *testing.T) {
 				i := 3.0
 				return v.Scale(i)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{1, 0, 0},
@@ -265,7 +257,7 @@ func TestTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{0, 0, 0},
@@ -278,7 +270,7 @@ func TestTransform(t *testing.T) {
 				}
 				return v.Transform(u)
 			},
-			Expected: Orgin,
+			Expected: Origin,
 		},
 		{
 			Initial: Cartesian{3, 0, 0},

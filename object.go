@@ -1,5 +1,7 @@
 package space
 
+import "fmt"
+
 // An Object is something which exists in space
 type Object struct {
 	// location is the location of the
@@ -13,7 +15,10 @@ type Object struct {
 
 // NewObject creates an object
 func NewObject(location Cartesian, orientation, rotation Spherical) *Object {
+	fmt.Println(orientation)
+	fmt.Println(rotation)
 	normalizedRotation := orientation.PortionOrtagonal(rotation)
+	fmt.Println(normalizedRotation)
 	return &Object{
 		location:    location,
 		orientation: orientation,
