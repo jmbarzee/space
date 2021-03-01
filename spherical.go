@@ -104,16 +104,10 @@ func (s Spherical) Tilt(phi float64) Spherical {
 func (s Spherical) PortionOrtagonal(o2 Spherical) Spherical {
 	v := s.Cartesian()
 	u := o2.Cartesian()
-	fmt.Println("v", v)
-	fmt.Println("u", u)
 	vProju := v.Project(u)
-	fmt.Println("vProju", vProju)
 	vProjuN := vProju.Scale(-1.0)
-	fmt.Println("vProjuN", vProjuN)
 	portUOrthoV := u.Translate(vProjuN)
-	fmt.Println("portUOrthoV", portUOrthoV)
 	sp := portUOrthoV.Spherical()
-	fmt.Println("sp", sp)
 	return sp
 }
 

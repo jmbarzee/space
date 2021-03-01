@@ -642,7 +642,6 @@ func TestMatrixMultiply(t *testing.T) {
 		},
 	}
 	for i, c := range cases {
-		// fmt.Printf("A:%v\nB:%v\n", c.A, c.B)
 		actual := c.A.Multiply(c.B)
 		if !MatriciesEqual(c.Expected, actual) {
 			t.Fatalf("Multiply %v failed. Matricies were not equal:\n\tExpected: %v,\n\tActual: %v", i, c.Expected, actual)
