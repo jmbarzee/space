@@ -7,7 +7,7 @@ import (
 type VectorTest struct {
 	Initial   Vector
 	Operation func(Vector) Vector
-	Expected  vectorEquivalent
+	Expected  vectorEquivalency
 }
 
 func RunVectorTests(t *testing.T, cases []VectorTest) {

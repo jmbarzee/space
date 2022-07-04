@@ -51,3 +51,11 @@ func (o Object) GetRotation() Spherical {
 func (o *Object) SetRotation(newRotation Spherical) {
 	o.rotation = o.orientation.PortionOrtagonal(newRotation)
 }
+
+// Move changes all properties of the object
+func (o *Object) Move(location Cartesian, orientation, rotation Spherical) {
+	normalizedRotation := orientation.PortionOrtagonal(rotation)
+	o.location = location
+	o.orientation = orientation
+	o.rotation = normalizedRotation
+}

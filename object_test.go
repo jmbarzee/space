@@ -40,6 +40,48 @@ func TestNewObject(t *testing.T) {
 	}
 }
 
+func TestObjectMove(t *testing.T) {
+	initial := Object{
+		location:    Origin.Cartesian,
+		orientation: AxisX.Spherical,
+		rotation:    AxisZ.Spherical,
+	}
+	cases := []struct {
+		Location    Cartesian
+		Orientation Spherical
+		Rotation    Spherical
+		Expected    Object
+	}{
+		{
+			Location:    AxisZN.Cartesian,
+			Orientation: AxisX.Spherical,
+			Rotation:    AxisY.Spherical,
+			Expected: Object{
+				location:    AxisZN.Cartesian,
+				orientation: AxisX.Spherical,
+				rotation:    AxisY.Spherical,
+			},
+		},
+		{
+			Location:    AxisYN.Cartesian,
+			Orientation: AxisX.Spherical,
+			Rotation:    AxisZ.Spherical,
+			Expected: Object{
+				location:    AxisYN.Cartesian,
+				orientation: AxisX.Spherical,
+				rotation:    AxisZ.Spherical,
+			},
+		},
+	}
+	for i, c := range cases {
+		actual := initial
+		actual.Move(c.Location, c.Orientation, c.Rotation)
+		if !ObjectsEqual(&c.Expected, &actual) {
+			t.Fatalf("NewObject %v failed. Objects were not equal:\n\tExpected: %v,\n\tActual: %v", i, &c.Expected, actual)
+		}
+	}
+}
+
 // ObjectsEqual compares objects
 func ObjectsEqual(a, b *Object) bool {
 	if !CartesiansEqual(a.GetLocation(), b.GetLocation()) {

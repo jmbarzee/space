@@ -6,7 +6,7 @@ import (
 
 const MinErr = 0.000001
 
-type vectorEquivalent struct {
+type vectorEquivalency struct {
 	Cartesian Cartesian
 	Spherical Spherical
 }
@@ -21,7 +21,7 @@ func near(a, b float64) bool {
 
 var sqrt2o2 = math.Sqrt2 / 2.0
 
-var AllEquivalencies = []vectorEquivalent{
+var AllEquivalencies = []vectorEquivalency{
 	Origin,
 
 	AxisX,
@@ -59,7 +59,7 @@ var AllEquivalencies = []vectorEquivalent{
 
 // Origin
 var (
-	Origin = vectorEquivalent{
+	Origin = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: 0,
@@ -75,7 +75,7 @@ var (
 
 // Axes with length of one
 var (
-	AxisX = vectorEquivalent{
+	AxisX = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 1,
 			Y: 0,
@@ -88,7 +88,7 @@ var (
 		},
 	}
 
-	AxisXN = vectorEquivalent{
+	AxisXN = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -1,
 			Y: 0,
@@ -101,7 +101,7 @@ var (
 		},
 	}
 
-	AxisY = vectorEquivalent{
+	AxisY = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: 1,
@@ -114,7 +114,7 @@ var (
 		},
 	}
 
-	AxisYN = vectorEquivalent{
+	AxisYN = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: -1,
@@ -127,7 +127,7 @@ var (
 		},
 	}
 
-	AxisZ = vectorEquivalent{
+	AxisZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: 0,
@@ -140,7 +140,7 @@ var (
 		},
 	}
 
-	AxisZN = vectorEquivalent{
+	AxisZN = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: 0,
@@ -156,7 +156,7 @@ var (
 
 // Axes with length of three
 var (
-	AxisX3 = vectorEquivalent{
+	AxisX3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 3,
 			Y: 0,
@@ -169,7 +169,7 @@ var (
 		},
 	}
 
-	AxisXN3 = vectorEquivalent{
+	AxisXN3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -3,
 			Y: 0,
@@ -182,7 +182,7 @@ var (
 		},
 	}
 
-	AxisY3 = vectorEquivalent{
+	AxisY3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: 3,
@@ -195,7 +195,7 @@ var (
 		},
 	}
 
-	AxisYN3 = vectorEquivalent{
+	AxisYN3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: -3,
@@ -208,7 +208,7 @@ var (
 		},
 	}
 
-	AxisZ3 = vectorEquivalent{
+	AxisZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: 0,
@@ -221,7 +221,7 @@ var (
 		},
 	}
 
-	AxisZN3 = vectorEquivalent{
+	AxisZN3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0,
 			Y: 0,
@@ -237,7 +237,7 @@ var (
 
 // Octants with length of one
 var (
-	OctantXYZ = vectorEquivalent{
+	OctantXYZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0.5773502669,
 			Y: 0.5773502669,
@@ -249,7 +249,7 @@ var (
 			P: 0.304086724 * math.Pi,
 		},
 	}
-	OctantNXYZ = vectorEquivalent{
+	OctantNXYZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -0.5773502669,
 			Y: 0.5773502669,
@@ -261,7 +261,7 @@ var (
 			P: 0.304086724 * math.Pi,
 		},
 	}
-	OctantNXNYZ = vectorEquivalent{
+	OctantNXNYZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -0.5773502669,
 			Y: -0.5773502669,
@@ -273,7 +273,7 @@ var (
 			P: 0.304086724 * math.Pi,
 		},
 	}
-	OctantXNYZ = vectorEquivalent{
+	OctantXNYZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0.5773502669,
 			Y: -0.5773502669,
@@ -285,7 +285,7 @@ var (
 			P: 0.304086724 * math.Pi,
 		},
 	}
-	OctantXYNZ = vectorEquivalent{
+	OctantXYNZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0.5773502669,
 			Y: 0.5773502669,
@@ -297,7 +297,7 @@ var (
 			P: 0.695913276 * math.Pi,
 		},
 	}
-	OctantNXYNZ = vectorEquivalent{
+	OctantNXYNZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -0.5773502669,
 			Y: 0.5773502669,
@@ -309,7 +309,7 @@ var (
 			P: 0.695913276 * math.Pi,
 		},
 	}
-	OctantNXNYNZ = vectorEquivalent{
+	OctantNXNYNZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -0.5773502669,
 			Y: -0.5773502669,
@@ -321,7 +321,7 @@ var (
 			P: 0.695913276 * math.Pi,
 		},
 	}
-	OctantXNYNZ = vectorEquivalent{
+	OctantXNYNZ = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 0.5773502669,
 			Y: -0.5773502669,
@@ -337,7 +337,7 @@ var (
 
 // Octants with length of three
 var (
-	OctantXYZ3 = vectorEquivalent{
+	OctantXYZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 1.7320508007,
 			Y: 1.7320508007,
@@ -349,7 +349,7 @@ var (
 			P: 0.304086724 * math.Pi,
 		},
 	}
-	OctantNXYZ3 = vectorEquivalent{
+	OctantNXYZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -1.7320508007,
 			Y: 1.7320508007,
@@ -361,7 +361,7 @@ var (
 			P: 0.304086724 * math.Pi,
 		},
 	}
-	OctantNXNYZ3 = vectorEquivalent{
+	OctantNXNYZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -1.7320508007,
 			Y: -1.7320508007,
@@ -373,7 +373,7 @@ var (
 			P: 0.304086724 * math.Pi,
 		},
 	}
-	OctantXNYZ3 = vectorEquivalent{
+	OctantXNYZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 1.7320508007,
 			Y: -1.7320508007,
@@ -385,7 +385,7 @@ var (
 			P: 0.304086724 * math.Pi,
 		},
 	}
-	OctantXYNZ3 = vectorEquivalent{
+	OctantXYNZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 1.7320508007,
 			Y: 1.7320508007,
@@ -397,7 +397,7 @@ var (
 			P: 0.695913276 * math.Pi,
 		},
 	}
-	OctantNXYNZ3 = vectorEquivalent{
+	OctantNXYNZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -1.7320508007,
 			Y: 1.7320508007,
@@ -409,7 +409,7 @@ var (
 			P: 0.695913276 * math.Pi,
 		},
 	}
-	OctantNXNYNZ3 = vectorEquivalent{
+	OctantNXNYNZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: -1.7320508007,
 			Y: -1.7320508007,
@@ -421,7 +421,7 @@ var (
 			P: 0.695913276 * math.Pi,
 		},
 	}
-	OctantXNYNZ3 = vectorEquivalent{
+	OctantXNYNZ3 = vectorEquivalency{
 		Cartesian: Cartesian{
 			X: 1.7320508007,
 			Y: -1.7320508007,
