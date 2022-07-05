@@ -52,6 +52,11 @@ func (o *Object) SetRotation(newRotation Spherical) {
 	o.rotation = o.orientation.PortionOrtagonal(newRotation)
 }
 
+// GetBearings returns all properties of the object
+func (o Object) GetBearings() (location Cartesian, orientation, rotation Spherical) {
+	return o.location, o.orientation, o.rotation
+}
+
 // Move changes all properties of the object
 func (o *Object) Move(location Cartesian, orientation, rotation Spherical) {
 	normalizedRotation := orientation.PortionOrtagonal(rotation)
